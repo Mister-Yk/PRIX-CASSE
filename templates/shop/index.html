@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block block-content %}
+   <div class="row">
+    
+        
+        {% for produit in produits  %}
+            <div class="col-lg-3">
+                <img class="thumbnail" src="{{ produit.imageUrl }}" alt="">
+                <div class="box-element product">
+                    <h6>{{ produit.name }}</h6>
+                    <hr>
+                    <button class="btn btn-outline-secondary update-panier" data-produit="{{ produit.id }}" data-action="add">Ajouter au Panier</button>
+                    <a class="btn btn-outline-success" href="#">Voir</a>
+                    <h3 style="float: right; font-size:20px;">{{ produit.price }} FCFA</h3>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-lg-12">
+                <p>Aucun produit trouvé pour votre recherche.</p>
+            </div>
+        {% endfor %}
+      
+   </div>
+{% endblock block-content %}
+    
