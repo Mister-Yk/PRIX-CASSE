@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from .utiles import panier_cookie, data_cookie
 from decimal import Decimal
+from django.core.paginator import Paginator
 
 
 
@@ -13,7 +14,9 @@ def shop(request, *args, **kwargs):
     """ Vue principale """
     data = data_cookie(request)
     nombre_article = data['nombre_article']
-    produits = Produit.objects.all().order_by('-id')
+    p = Paginator(Produit.objects.all(), 20)
+    page = request.GET.get('page')
+    products = p.get_page(page)
 
     if request.method == 'GET':
         name = request.GET.get('recherche')
@@ -22,8 +25,8 @@ def shop(request, *args, **kwargs):
 
 
     context = {
-        'produits': produits,
         'nombre_article': nombre_article,
+        'products':products
     }
 
     return render(request, 'shop/index.html', context)
