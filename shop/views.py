@@ -95,6 +95,8 @@ def commandeAnonyme(request, data):
         email = email
     )
     client.name = name
+    client.username=username
+    client.phone = phone
     client.save()
     commande = Commande.objects.create(
         client=client

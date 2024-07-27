@@ -4,7 +4,9 @@ from django.utils import timezone
 class Client(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=100, null=True)
+    username= models.CharField(null=True, blank=True, max_length=255)
     email = models.EmailField(max_length=200, null=True)
+    phone = models.IntegerField(null=True, blank=True, default=0)
 
     def __str__(self):
         return str(self.name)
@@ -24,6 +26,7 @@ class Produit(models.Model):
     digital = models.BooleanField(default=False, null=True, blank=True)
     image = models.ImageField(upload_to="shop" ,null=True, blank=True)
     date_ajout = models.DateTimeField(auto_now_add=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name

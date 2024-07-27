@@ -3,7 +3,7 @@ from .models import*
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email')
+    list_display = ('name', 'username', 'email','phone')
     list_filter= ('name',)
     search_fields = ('name',)
     list_per_page = (4)
@@ -11,7 +11,7 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(Produit)
 class ProduitAdmin(admin.ModelAdmin):
-    list_display = ( 'name', 'price', 'image', 'date_ajout','categorie')
+    list_display = ( 'name', 'price', 'image', 'date_ajout','categorie', 'description')
     list_filter = ('name', 'date_ajout')
     search_fields = ('name',)
     list_per_page = (4)
